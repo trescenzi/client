@@ -61,6 +61,13 @@ function selectedInboxSelector(state: TypedState, conversationIDKey: Constants.C
   return state.chat.get('inbox').find(convo => convo.get('conversationIDKey') === conversationIDKey)
 }
 
+function lastMessage(state: TypedState, conversationIDKey: Constants.ConversationIDKey) {
+  console.log(conversationIDKey);
+  return conversationStateSelector(state, conversationIDKey)
+    .get('messages')
+    .get(0);
+}
+
 function inboxUntrustedStateSelector(state: TypedState) {
   return state.chat.get('inboxUntrustedState')
 }
@@ -197,4 +204,5 @@ export {
   selectedInboxSelector,
   startNewConversation,
   tmpFileName,
+  lastMessage,
 }
