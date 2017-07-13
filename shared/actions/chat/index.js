@@ -921,7 +921,7 @@ function* _sendNotifications(action: Constants.AppendMessages): SagaGenerator<an
         console.log('Sending Chat notification')
         const snippet = Constants.makeSnippet(Constants.serverMessageToMessageBody(message))
         yield put((dispatch: Dispatch) => {
-          NotifyPopup(message.author, {body: snippet}, -1, message.author, () => {
+          NotifyPopup(message.author, {body: snippet}, isMobile ? 60 : -1, message.author, () => {
             dispatch(Creators.selectConversation(action.payload.conversationIDKey, false))
             dispatch(switchTo([chatTab]))
             dispatch(showMainWindow())
